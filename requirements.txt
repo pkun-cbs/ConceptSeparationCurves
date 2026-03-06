@@ -101,7 +101,6 @@ nbconvert
 nbformat
 nest-asyncio
 networkx
-nl_core_news_lg @ https://github.com/explosion/spacy-models/releases/download/nl_core_news_lg-3.8.0/nl_core_news_lg-3.8.0-py3-none-any.whl#sha256=19a3cb18b92f775a0df0e61026e2a0f874e73aabb1b744b16230dfe573a3e34e
 numpy
 numpydoc
 orjson
@@ -212,8 +211,8 @@ tinycss2
 tokenizers
 toml
 tomlkit
-torch+cu130
-torchvision+cu130
+torch
+torchvision
 tornado
 tqdm
 traitlets
