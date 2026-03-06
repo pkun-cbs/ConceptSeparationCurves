@@ -118,7 +118,6 @@ pluggy
 preshed
 prompt_toolkit
 propcache
-protobuf
 psutil
 ptyprocess
 pure_eval
@@ -147,14 +146,9 @@ pytokens
 pytoolconfig
 pytz
 pyuca
-pywin32-ctypes
 PyYAML
 pyzmq
-QDarkStyle
 qstylizer
-QtAwesome
-qtconsole
-QtPy
 referencing
 regex
 requests
