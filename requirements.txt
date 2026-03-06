@@ -138,7 +138,6 @@ pylint-venv
 pyls-spyder
 PyNaCl
 pyparsing
-python-dateutilpost0
 python-lsp-black
 python-lsp-jsonrpc
 python-lsp-ruff
@@ -177,10 +176,6 @@ smmap
 snowballstemmer
 sortedcontainers
 soupsieve
-spacy
-spacy-curated-transformers
-spacy-legacy
-spacy-loggers
 Sphinx
 sphinxcontrib-applehelp
 sphinxcontrib-devhelp
@@ -188,13 +183,10 @@ sphinxcontrib-htmlhelp
 sphinxcontrib-jsmath
 sphinxcontrib-qthelp
 sphinxcontrib-serializinghtml
-spyder
-spyder-kernels
 srsly
 stack-data
 stqdm
 streamlit
-superqt
 sympy
 tenacity
 text-unidecode
