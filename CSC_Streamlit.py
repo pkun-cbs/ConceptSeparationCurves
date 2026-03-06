@@ -25,28 +25,45 @@ def get_model(model_name:str) -> SentenceTransformer:
 
 st.set_page_config(
     page_title="Concept Separation Curves",
-    page_icon="👋",
+    page_icon="🔀",
     )
 st.write("# Concept Separation Curves")
 
 st.markdown("""
-            In this research we show a method for measuring the impact on llm-vectors when altering the given sentence.
+            This is a demo for our research on Concept Separation Curves.
+
+            Sentence embedding techniques aim to encode key concepts of a sentence’s meaning in a vector space.
+            However, the majority of evaluation approaches for sentence embedding quality rely on the use of additional classifiers or downstream tasks.
+            These additional components make it unclear whether good results stem from the embedding itself or from the classifier's behaviour. 
+            In this paper, we propose a novel method for evaluating the effectiveness of sentence embedding methods in capturing sentence-level concepts. 
+            Our approach is classifier-independent, allowing for an objective assessment of the model's performance. 
+            The approach adopted in this study involves the systematic introduction of syntactic noise and semantic negations into sentences, with the subsequent quantification of their relative effects on the resulting embeddings. 
+            The visualisation of these effects is facilitated by Concept Separation Curves, which show the model's capacity to differentiate between conceptual and surface-level variations. 
+            By leveraging data from multiple domains, employing both Dutch and English languages, and examining sentence lengths, this study offers a compelling demonstration that Concept Separation Curves provide an interpretable, reproducible, and cross-model approach for evaluating the conceptual stability of sentence embeddings.
             
-            Used moddels in the original paper extend beyond hugging-face availability.
-            Yet this interface enables different options to be visualised.
-            
-            Options for LLM's as tested in the paper are as follows:
+            In this demo you can use any huggingface model.
+            The ones we use in the paper are the following:
             - sentence-transformers/LaBSE
             - sentence-transformers/all-mpnet-base-v2
             - sentence-transformers/all-distilroberta-v1
+
             
             """)
 st.warning("Changing the model will take time. The larger a model the more time needed.")
 llm_model = get_model(st.text_input("Input a huggingface sentence transformer", value='sentence-transformers/LaBSE'))
 
+st.markdown(
+    """
+    ## Algorithm settings
+    The section below shows the settings for the algorithm.
+    First you can input an example sentence on which the example Fuzzing and Negation are performed.
+    The example sentence is only used to show the Fuzzing and Negation.
+
+""")
+
 example_text = st.text_input("Input an example", "Type something here...")
 
-random_options = st.number_input("How many examples do you want?", min_value=1, max_value=100, value=3)
+random_options = st.number_input("How many sentences should be generated?", min_value=1, max_value=100, value=3)
 
 positives, negatives = st.columns(2)
 
@@ -57,7 +74,7 @@ embedded_text = llm_model.encode(example_text)
 compare = lambda s: cosine_sym(llm_model.encode(s), embedded_text)
 
 with positives:
-    alteration_1 = st.text_input("Alteration terms 1", "the | a")
+    alteration_1 = st.text_input("Fuzzing terms", "the | a")
     pos_terms = tuple(map(str.strip, alteration_1.split("|")))
     
     positive_gen = lambda sentence: random_article_insertion(sentence.split(), 
@@ -69,7 +86,7 @@ with positives:
     st.dataframe(positive_df, hide_index=True)
 
 with negatives:
-    alteration_2 = st.text_input("Alteration terms 2", "not | no")
+    alteration_2 = st.text_input("Negation terms", "not")
     neg_terms = tuple(map(str.strip, alteration_2.split("|")))
     negative_gen = lambda sentence: random_article_insertion(sentence.split(), 
                                                              neg_terms,
@@ -172,5 +189,5 @@ if compute:
     st.pyplot( df.plot.line().figure)
             
     st.markdown("Just to re-iterate,"
-                f" the Alteration 1 are texts with ''{alteration_1}''."
-                f" Alteration 2 texts have ''{alteration_2}'' inserted.")
+                f" the Fuzzing are texts with ''{alteration_1}''."
+                f" Negation texts have ''{alteration_2}'' inserted.")
