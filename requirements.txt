@@ -2,7 +2,6 @@ aiohappyeyeballs
 aiohttp
 aiosignal
 alabaster
-altair
 annotated-doc
 annotated-types
 arrow
