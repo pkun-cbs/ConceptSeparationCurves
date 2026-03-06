@@ -138,11 +138,6 @@ pylint-venv
 pyls-spyder
 PyNaCl
 pyparsing
-PyQt5
-PyQt5-Qt5
-PyQt5_sip
-PyQtWebEngine
-PyQtWebEngine-Qt5
 python-dateutilpost0
 python-lsp-black
 python-lsp-jsonrpc
