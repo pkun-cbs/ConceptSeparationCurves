@@ -2,3 +2,4 @@ sentence-transformers
 stqdm
 streamlit
 scipy
+matplotlib
